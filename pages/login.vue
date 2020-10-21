@@ -14,7 +14,6 @@
               required
             ></v-text-field>
           </v-col>
-
           <v-col cols="12">
             <v-text-field
               v-model="password"
@@ -24,7 +23,7 @@
               required
             ></v-text-field>
           </v-col>
-          <v-btn @click="submit">SUBMIT</v-btn>
+          <v-btn @click="login()">SUBMIT</v-btn>
         </v-col>
       </v-row>
     </v-container>
@@ -32,12 +31,6 @@
 </template>
 <script>
 export default {
-  mounted() {
-    this.$nextTick(() => {
-      this.$nuxt.$loading.start()
-      setTimeout(() => this.$nuxt.$loading.finish(), 500)
-    })
-  },
   data() {
     return {
       valid: false,
@@ -45,50 +38,43 @@ export default {
       success: false,
       username: "",
       nameRules: [
-        v => !!v || "Required",
-        v => (v && v.length >= 3) || "Min 3 characters"
+        (v) => !!v || "Required",
+        (v) => (v && v.length >= 3) || "Min 3 characters",
       ],
       password: "",
       passRules: [
-        v => !!v || "Required",
-        v => (v && v.length >= 6) || "Min 6 characters"
-      ]
+        (v) => !!v || "Required",
+        (v) => (v && v.length >= 6) || "Min 6 characters",
+      ],
     };
   },
   methods: {
-    async submit() {
+    async login() {
       if (this.$refs.login.validate()) {
         const res = await this.$axios({
           method: "post",
           url: `/api/login`,
           data: {
             username: this.username,
-            password: this.password
-          }
+            password: this.password,
+          },
         })
-          .then(r => {
+          .then((r) => {
+            this.$store.commit("UPDATE_isLogged", true);
             this.success = true;
             this.error = "";
+            this.$cookiz.set("token", r.data, {
+              maxAge: 60 * 60 * 24 * 360 * 2,
+            });
             setTimeout(() => {
               this.$router.push("/");
             }, 1500);
           })
-          .catch(e => {
-            if (e.response.status === 401) {
-              this.error = e.response.data;
-            } else if (e.response.status === 404) {
-              this.error = "Connection Error!";
-            }
+          .catch((e) => {
+            this.error = e.response.data;
           });
       }
-    }
-  }
+    },
+  },
 };
 </script>
-
-<style>
-.v-progress-linear {
-  position: fixed;
-  top: 0;
-}
-</style>
