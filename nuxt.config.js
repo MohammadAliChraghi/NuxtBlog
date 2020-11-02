@@ -16,7 +16,9 @@ export default {
   loading: "~/components/loading.vue",
 
   // Global CSS (https://go.nuxtjs.dev/config-css)
-  css: [],
+  css: [
+    '@fortawesome/fontawesome-svg-core/styles.css'
+  ],
 
   // Plugins to run before rendering page (https://go.nuxtjs.dev/config-plugins)
   plugins: [],
@@ -36,11 +38,22 @@ export default {
   modules: [
     // https://go.nuxtjs.dev/axios
     "@nuxtjs/axios",
+    "nuxt-socket-io",
     ["cookie-universal-nuxt", { alias: "cookiz" }],
   ],
 
+  io: {
+    // module options
+    sockets: [
+      {
+        name: "main",
+        url: "http://localhost:3000",
+      },
+    ],
+  },
+
   router: {
-    middleware: ["auth"],
+    middleware: ["default"],
   },
   // Vuetify module configuration (https://go.nuxtjs.dev/config-vuetify)
   vuetify: {
@@ -57,7 +70,7 @@ export default {
           warning: colors.amber.base,
           error: colors.deepOrange.accent4,
           success: colors.green.accent3,
-          orange: colors.orange.accent3
+          orange: colors.orange.accent3,
         },
       },
     },

@@ -1,9 +1,5 @@
 <template>
   <v-app>
-    <v-system-bar color="accent" lights-out>
-      <v-spacer></v-spacer><v-icon color="gray">mdi-email</v-icon
-      ><v-badge dot overlap></v-badge>
-    </v-system-bar>
     <v-row>
       <v-navigation-drawer
         class="rounded-0"
@@ -12,18 +8,20 @@
       >
         <v-list-item>
           <v-btn icon @click.stop="mini = !mini">
-            <v-icon>mdi-chevron-left</v-icon>
+            <v-icon>mdi-chevron-{{ chevron }}</v-icon>
           </v-btn>
         </v-list-item>
-
         <v-divider />
-        <v-list dense class="pl-1">
+        <v-list v-for="item in list_item" :key="item.id" dense class="pl-1">
           <v-list-item link>
-            <v-icon>mdi-email</v-icon>
-            <v-list-item-content class="pl-5">Simple</v-list-item-content>
+            <nuxt-link :to="`/dashboard/${item.link}`">
+              <v-icon>mdi-{{ item.icon }}</v-icon>
+              <v-list-item-content class="pl-5">{{
+                item.name
+              }}</v-list-item-content>
+            </nuxt-link>
           </v-list-item>
         </v-list>
-        <v-divider />
       </v-navigation-drawer>
       <v-col>
         <Nuxt />
@@ -37,7 +35,43 @@ export default {
   data() {
     return {
       mini: true,
+      i_route: "",
+      list_item: [
+        {
+          id: 1,
+          link: "",
+          icon: "home-analytics",
+          name: "Dashboard",
+        },
+        {
+          id: 2,
+          link: "users",
+          icon: "account-group",
+          name: "Users",
+        },
+        {
+          id: 5,
+          link: "posts",
+          icon: "text-box",
+          name: "Posts",
+        },
+      ],
     };
+  },
+  computed: {
+    chevron() {
+      return this.mini ? "left" : "right";
+    },
   },
 };
 </script>
+
+<style>
+a {
+  text-decoration: none;
+}
+.v-list-item a {
+  color: white;
+  display: flex;
+}
+</style>

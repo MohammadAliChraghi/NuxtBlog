@@ -7,6 +7,9 @@
           <h1 v-else>An error occurred</h1>
           <br />
           <hr />
+          <h1>{{error.message}}</h1>
+          <br />
+          <hr />
           <br />
           <v-card-actions
             ><NuxtLink to="/" class="text-center"
