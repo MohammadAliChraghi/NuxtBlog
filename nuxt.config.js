@@ -38,7 +38,6 @@ export default {
   modules: [
     // https://go.nuxtjs.dev/axios
     "@nuxtjs/axios",
-    "nuxt-socket-io",
     ["cookie-universal-nuxt", { alias: "cookiz" }],
   ],
 
