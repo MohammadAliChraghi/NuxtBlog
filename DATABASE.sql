@@ -38,6 +38,7 @@ CREATE TABLE public.posts
     title character varying(512) NOT NULL,
     author serial NOT NULL,
     text text NOT NULL,
+    thumbnail character varying(512),
     PRIMARY KEY (id)
 );
 
