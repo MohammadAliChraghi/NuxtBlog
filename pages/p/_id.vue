@@ -2,18 +2,15 @@
   <div class="pa-3">
     <h1>{{ post.title }}</h1>
     <br />
-    <hr />
     <img
       v-if="post.thumbnail.length"
       style="width: 100%;height: 100%"
       :src="`/${post.thumbnail}`"
     />
     <br />
-    <hr />
     <br />
     <h2>By {{ post.author }}</h2>
     <br />
-    <hr />
     <br />
     <div style="text-align: justify">{{ post.text }}</div>
   </div>
@@ -27,6 +24,11 @@ export default {
       p_id: this.$route.params.id,
       post: { id: "", title: "", text: "", thumbnail: "" },
     };
+  },
+  head(){
+    return{
+      title: this.post.title
+    }
   },
   validate({ params }) {
     // Must be a number

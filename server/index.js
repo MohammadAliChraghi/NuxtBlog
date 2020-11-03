@@ -81,7 +81,7 @@ app.get("/auth", async (req, res) => {
               const newT = jwt.sign({ id: obj.rows[0].id }, SECRET);
               res.send({
                 token: newT,
-                id: obj.rows[0].id,
+                user: obj.rows[0],
               });
             } else {
               res.status(401).send("User Is Incorrect");

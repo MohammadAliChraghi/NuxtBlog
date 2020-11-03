@@ -35,6 +35,11 @@ export default {
       posts: [],
     };
   },
+  head() {
+    return {
+      title: "Posts",
+    };
+  },
   methods: {
     async delete_post(i) {
       await axios

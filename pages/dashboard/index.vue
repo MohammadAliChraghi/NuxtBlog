@@ -104,6 +104,11 @@ export default {
       },
     };
   },
+  head(){
+    return{
+      title: "Dashboard"
+    }
+  },
   computed: {
     year_value() {
       return Object.keys(this.visits.year).map(

@@ -75,6 +75,11 @@ export default {
       },
     };
   },
+  head(){
+    return{
+      title: "Users"
+    }
+  },
   methods: {
     async Action_User() {
       if (this.action.type === "UPDATE") {
@@ -149,7 +154,7 @@ export default {
         });
     },
     push_route(i) {
-      this.$router.push(`/dashboard/users/${i}`);
+      this.$router.go(`/dashboard/users/${i}`);
     },
     async user_action(t, id) {
       if (t === "del") {

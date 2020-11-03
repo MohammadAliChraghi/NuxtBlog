@@ -21,6 +21,11 @@ export default {
       post: { id: 0, title: "", text: "", thumbnail: ""},
     };
   },
+  head(){
+    return{
+      title: `Edit ${this.post.title}`
+    }
+  },
   validate({ params }) {
     // Must be a number
     return /^\d+$/.test(params.id);
@@ -50,13 +55,13 @@ export default {
             })
             .catch((e) => {
               console.error("Post NoT Found!");
-              this.$router.push("/dashboard/posts");
+              this.$router.go("/dashboard/posts");
             });
         })
         .catch((e) => console.error(e));
     },
     cancel() {
-      this.$router.push("/dashboard/posts");
+      this.$router.go("/dashboard/posts");
     },
   },
   async fetch() {
@@ -69,7 +74,7 @@ export default {
       })
       .catch((e) => {
         console.error("Post NoT Found!");
-        this.$router.push("/dashboard/posts");
+        this.$router.go("/dashboard/posts");
       });
   },
   fetchOnServer: false,

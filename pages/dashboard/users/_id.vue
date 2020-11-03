@@ -45,6 +45,11 @@ export default {
     // Must be a number
     return /^\d+$/.test(params.id);
   },
+  head(){
+    return{
+      title: `User ${this.user.username}`
+    }
+  },
   methods: {
     async Action_User(t) {
       console.warn(this.user.id);
@@ -66,11 +71,11 @@ export default {
           })
           .then((r) => {
             alert(`${this.user.username} Succefuly Deleted`);
-            this.$router.push("/dashboard/users");
+            this.$router.go("/dashboard/users");
           })
           .catch((e) => {
             console.error("User NoT Found!");
-            this.$router.push("/dashboard/users");
+            this.$router.go("/dashboard/users");
           });
       }
     },

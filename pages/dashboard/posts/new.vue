@@ -21,6 +21,11 @@ export default {
       },
     };
   },
+  head(){
+    return{
+      title: "New Post"
+    }
+  },
   methods: {
     async Add() {
       const formData = new FormData();

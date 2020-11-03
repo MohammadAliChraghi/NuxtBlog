@@ -14,6 +14,11 @@ export default async ({ req, app, store, redirect, route, error }) => {
         headers: { authorization: token },
       })
       .then(async (r) => {
+        if (route.path.startsWith("/dashboard")) {
+          if (r.data.user.role !== "admin") {
+            return redirect("/");
+          }
+        }
         await axios
           .post("http://localhost:3000/api/statics/visits", {
             headers: { authorization: token },

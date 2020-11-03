@@ -48,6 +48,11 @@ export default {
       ],
     };
   },
+  head(){
+    return{
+      title: "Login"
+    }
+  },
   methods: {
     async login() {
       if (this.$refs.login.validate()) {
@@ -67,7 +72,7 @@ export default {
               maxAge: 60 * 60 * 24 * 360 * 2,
             });
             setTimeout(() => {
-              this.$router.push("/");
+              this.$router.go("/");
             }, 1500);
           })
           .catch((e) => {
