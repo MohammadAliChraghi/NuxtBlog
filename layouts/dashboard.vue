@@ -67,6 +67,9 @@ export default {
 </script>
 
 <style>
+.v-navigation-drawer{
+  height: initial !important;
+}
 a {
   text-decoration: none;
 }

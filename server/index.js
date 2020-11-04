@@ -360,6 +360,23 @@ app.post("/posts/:id?", upload.single("image"), (req, res) => {
   });
 });
 
+///
+///  Search
+///
+
+app.get("/search/posts/:word", (req, res) => {
+  db.query("SELECT * FROM posts WHERE title ILIKE $1 LIMIT 6", [`%${req.params.word}%`]).then(
+    (r) => {
+      if (r.rowCount > 0) {
+        res.send(r.rows);
+      } else {
+        console.log(r);
+        res.sendStatus(204);
+      }
+    }
+  );
+});
+
 //////////////////////////////////////////////////////////////////
 /// Export ///////////////////////////////////////////////////////
 //////////////////////////////////////////////////////////////////

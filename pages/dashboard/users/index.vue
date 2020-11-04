@@ -154,7 +154,7 @@ export default {
         });
     },
     push_route(i) {
-      this.$router.go(`/dashboard/users/${i}`);
+      this.$router.push(`/dashboard/users/${i}`);
     },
     async user_action(t, id) {
       if (t === "del") {

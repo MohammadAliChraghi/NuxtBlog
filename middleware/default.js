@@ -14,6 +14,7 @@ export default async ({ req, app, store, redirect, route, error }) => {
         headers: { authorization: token },
       })
       .then(async (r) => {
+        store.commit("UPDATE_user", r.data.user);
         if (route.path.startsWith("/dashboard")) {
           if (r.data.user.role !== "admin") {
             return redirect("/");
@@ -26,7 +27,6 @@ export default async ({ req, app, store, redirect, route, error }) => {
           .catch((e) => {
             console.error(e);
           });
-        store.commit("UPDATE_user", r.data);
         if (route.path === "/login") {
           store.commit("UPDATE_notify", {
             type: "info",
