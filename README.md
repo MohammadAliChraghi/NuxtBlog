@@ -1,5 +1,10 @@
-# blog
-
+# NuxtBlog
+A Blog Created With Nuxt.JS And Powered By MacGeek
+## Requirements
+  - Node.JS
+  - PostgreSQL
+## Screenshots
+![Screenshot 2020-11-06 205822](https://user-images.githubusercontent.com/63465728/98397292-63f18580-2074-11eb-929a-23ea02a22a11.png)
 ## Build Setup
 
 ```bash
