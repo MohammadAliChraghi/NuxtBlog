@@ -1,10 +1,13 @@
 <template>
   <v-app>
     <v-toolbar dense style="flex: initial;">
-      <v-toolbar-title>{{ title }}</v-toolbar-title>
+      <v-toolbar-title><nuxt-link to="/">Home</nuxt-link></v-toolbar-title>
       <v-spacer />
       <v-spacer />
-      <nuxt-link v-if="$store.getters.GET_user.role === 'admin'" to="/dashboard">
+      <nuxt-link
+        v-if="$store.getters.GET_user.role === 'admin'"
+        to="/dashboard"
+      >
         <v-btn icon>
           <v-icon>mdi-home-analytics</v-icon>
         </v-btn>
@@ -51,7 +54,6 @@ import axios from "axios";
 export default {
   data() {
     return {
-      title: "",
       search: {
         input: false,
         keyword: "",
@@ -84,11 +86,7 @@ export default {
         this.search.filtered = [];
       }
     },
-  },
-  mounted() {
-    if (process.client) {
-      this.title = document.title;
-    }
+    $route(to, from) {},
   },
 };
 </script>

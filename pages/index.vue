@@ -51,3 +51,9 @@ export default {
   fetchOnServer: false,
 };
 </script>
+
+<style>
+.v-responsive__sizer {
+  padding-bottom: 20vh !important;
+}
+</style>

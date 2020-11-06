@@ -1,18 +1,34 @@
 <template>
   <div class="pa-3">
-    <h1>{{ post.title }}</h1>
     <br />
-    <img
+    <div
+      class="rounded"
       v-if="post.thumbnail.length"
-      style="width: 100%;height: 100%"
       :src="`/${post.thumbnail}`"
-    />
+      :style="
+        'background-image: url(/' +
+          post.thumbnail +
+          ');background-size: cover;height: 86vh;display: flex'
+      "
+    >
+      <v-row align="center" justify="center">
+        <v-col class="text-center" cols="12">
+          <h1
+            class="display-1 font-weight-thin mb-4"
+            style="text-shadow: 2px 2px 2px black;"
+          >
+            {{ post.title }}
+          </h1>
+          <h4 class="subheading" style="text-shadow: 2px 2px 2px black;">
+            By {{ post.author }}
+          </h4>
+        </v-col>
+      </v-row>
+    </div>
     <br />
-    <br />
-    <h2>By {{ post.author }}</h2>
-    <br />
-    <br />
-    <div style="text-align: justify">{{ post.text }}</div>
+    <v-sheet elevation="4" class="pa-4 rounded" style="text-align: justify">{{
+      post.text
+    }}</v-sheet>
   </div>
 </template>
 
@@ -25,10 +41,10 @@ export default {
       post: { id: "", title: "", text: "", thumbnail: "" },
     };
   },
-  head(){
-    return{
-      title: this.post.title
-    }
+  head() {
+    return {
+      title: this.post.title,
+    };
   },
   validate({ params }) {
     // Must be a number

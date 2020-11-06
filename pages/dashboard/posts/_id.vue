@@ -1,7 +1,12 @@
 <template>
   <div class="pr-4">
     <v-text-field outlined v-model="post.title" label="Title" />
-    <v-file-input v-model="post.thumbnail" show-size truncate-length="50" />
+    <v-file-input
+      :label="post.thumbnail"
+      v-model="post.thumbnail"
+      truncate-length="50"
+      prepend-icon="mdi-camera"
+    />
     <v-textarea
       rows="23"
       outlined
@@ -18,13 +23,13 @@ export default {
   layout: "dashboard",
   data() {
     return {
-      post: { id: 0, title: "", text: "", thumbnail: ""},
+      post: { id: 0, title: "", text: "", thumbnail: "" },
     };
   },
-  head(){
-    return{
-      title: `Edit ${this.post.title}`
-    }
+  head() {
+    return {
+      title: `Edit ${this.post.title}`,
+    };
   },
   validate({ params }) {
     // Must be a number

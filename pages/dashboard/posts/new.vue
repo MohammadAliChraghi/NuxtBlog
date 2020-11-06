@@ -1,7 +1,11 @@
 <template>
   <div class="pr-4">
     <v-text-field outlined v-model="post.title" label="Title" />
-    <v-file-input v-model="post.thumbnail" show-size truncate-length="50" />
+    <v-file-input
+      v-model="post.thumbnail"
+      truncate-length="50"
+      prepend-icon="mdi-camera"
+    />
     <v-textarea rows="23" outlined label="Text" v-model="post.text" />
     <v-btn @click="Add()" color="success">Add</v-btn>
     <v-btn @click="cancel()" color="error">Cancel</v-btn>
@@ -21,10 +25,10 @@ export default {
       },
     };
   },
-  head(){
-    return{
-      title: "New Post"
-    }
+  head() {
+    return {
+      title: "New Post",
+    };
   },
   methods: {
     async Add() {
